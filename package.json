@@ -7,7 +7,7 @@
     "node": "5.4.1"
   },
   "scripts": {
-    "test": "hotnode index.js"
+    "start": "hotnode index.js"
   },
   "keywords": [
     "api"
