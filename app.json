@@ -1,0 +1,8 @@
+{
+  "name": "ApiGateway:Jarvis",
+  "description": "API Gateway service to access all the content in JARVIS services.",
+  "image": "heroku/nodejs",
+  "addons": [
+    "redistogo:nano"
+  ]
+}
