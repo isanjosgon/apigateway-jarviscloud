@@ -3,6 +3,8 @@
 
 'use strict'
 
+const request = require('superagent');
+
 class Currency
 {
   constructor () {
@@ -10,3 +12,5 @@ class Currency
   }
 
 }
+
+module.exports = Currency;
