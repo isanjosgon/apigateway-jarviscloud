@@ -3,7 +3,7 @@
 
 'use strict'
 
-const redis;
+let redis;
 if (process.env.REDISTOGO_URL) {
   let rtg = require('url').parse(process.env.REDISTOGO_URL);
   redis = require('redis').createClient(rtg.port,rtg.hostname);
