@@ -1,6 +1,6 @@
 {
   "name": "apigateway",
-  "version": "0.1.0",
+  "version": "1",
   "description": "API Gateway service to access all the content in JARVIS services.",
   "main": "index.js",
   "engines": {
