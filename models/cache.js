@@ -26,9 +26,6 @@ class Cache
   get (key,callback)
   {
     redis.get(key,function (err,res) {
-      if (err) {
-        return callback(err);
-      }
       callback(err,JSON.parse(res));
     });
   }

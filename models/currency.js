@@ -35,20 +35,20 @@ class Currency
           if (err) {
             return self.recovery(resolve,reject);
           }
-          self.format(res.body,resolve);
-          self.write(res.body);
+          resolve(self.format(res.body));
+          self.save(res.body);
         });
     });
   }
-  format (res,resolve) {
-    resolve({
+  format (res) {
+    return {
       version:config.version,
       from:this.from,
       to:this.to,
       currency:res
-    });
+    };
   }
-  write (data) {
+  save (data) {
     this.cache.set(key({ from:this.from,to:this.to }),data);
   }
   recovery (resolve,reject) {
@@ -57,7 +57,7 @@ class Currency
       if (err || !res) {
         return reject('Impossible connect to currency service.');
       }
-      self.format(res,resolve);
+      resolve(self.format(res));
     });
   }
 }

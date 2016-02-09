@@ -35,20 +35,20 @@ class Weather
           if (err) {
             return self.recovery(resolve,reject);
           }
-          self.format(res.body,resolve);
-          self.write(res.body);
+          resolve(self.format(res.body));
+          self.save(res.body);
         });
     });
   }
-  format (res,resolve) {
-    resolve({
+  format (res) {
+    return {
       version:config.version,
       lat:this.lat,
       lon:this.lon,
       weather:res
-    });
+    };
   }
-  write (data) {
+  save (data) {
     this.cache.set(key({ lat:this.lat,lon:this.lon }),data);
   }
   recovery (resolve,reject) {
@@ -57,7 +57,7 @@ class Weather
       if (err || !res) {
         return reject('Impossible connect to weather service.');
       }
-      self.format(res,resolve);
+      resolve(self.format(res));
     });
   }
 }
