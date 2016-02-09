@@ -19,7 +19,7 @@ class Cache
   }
   set (key,data,callback) {
     let multi = redis.multi();
-    multi.set(key,data,JSON.stringify(data));
+    multi.set(key,JSON.stringify(data));
     multi.expire(key,24 * 3600);
     multi.exec(callback);
   }
