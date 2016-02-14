@@ -17,13 +17,13 @@ class Cache
   constructor () {
 
   }
-  set (key,data,callback) {
+  write (key,data,callback) {
     let multi = redis.multi();
     multi.set(key,JSON.stringify(data));
     multi.expire(key,24 * 3600);
     multi.exec(callback);
   }
-  get (key,callback)
+  read (key,callback)
   {
     redis.get(key,function (err,res) {
       callback(err,JSON.parse(res));
