@@ -30,6 +30,12 @@ class Server {
       }
       weather.execute(req.params,new Response(res,logger));
     });
+    api.get('/currency',function (req,res) {
+      if (logger) {
+        logger.info('request GET : /currency ? ' + JSON.stringify(req.params));
+      }
+      currency.execute(req.params,new Response(res,logger));
+    });
 
     api.listen(process.env.PORT || 5001,function () {
       logger.config(config.name + ' up and ready');
