@@ -3,7 +3,7 @@
 
 'use strict'
 
-class Presenter
+class Response
 {
   constructor (response) {
     this.response = response;
@@ -22,4 +22,4 @@ class Presenter
   }
 }
 
-module.exports = Presenter;
+module.exports = Response;
