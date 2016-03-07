@@ -18,12 +18,16 @@ class Server {
     api.use(restify.bodyParser());
 
     api.get('/',function (req,res) {
-      logger.info('request GET : /');
+      if (logger) {
+        logger.info('request GET : /');
+      }
       let response = new Response(res,logger);
       response.pong();
     });
     api.get('/weather',function (req,res) {
-      logger.info('request GET : /weather ? ' + JSON.stringify(req.params));
+      if (logger) {
+        logger.info('request GET : /weather ? ' + JSON.stringify(req.params));
+      }
       weather.execute(req.params,new Response(res,logger));
     });
 
