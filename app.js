@@ -6,6 +6,7 @@
 const env = require('node-env-file');
 env(__dirname + '/.env');
 
+const Logger = require('./interface/logger');
 const Server = require('./webservice/server');
 const GetWeatherUseCase = require('./usecase/getweather');
 const WeatherMapper = require('./model/weather/weathermapper');
@@ -15,4 +16,4 @@ const WeatherRepo = require('./model/weather/weatherrepository');
 let weatherrepo = new WeatherRepo(WeatherMapper,ForecastMapper);
 let getWeatherUseCase = new GetWeatherUseCase(weatherrepo);
 
-let webservice = new Server(getWeatherUseCase);
+let webservice = new Server(new Logger(),getWeatherUseCase);

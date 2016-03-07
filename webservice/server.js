@@ -8,7 +8,7 @@ const config = require('../package.json');
 const Response = require('./response');
 
 class Server {
-  constructor(weather,currency) {
+  constructor(logger,weather,currency) {
     let api = restify.createServer({
       name: config.name,
       version: config.version
@@ -18,15 +18,17 @@ class Server {
     api.use(restify.bodyParser());
 
     api.get('/',function (req,res) {
-      let response = new Response(res);
+      logger.info('request GET : /');
+      let response = new Response(res,logger);
       response.pong();
     });
     api.get('/weather',function (req,res) {
-      weather.execute(req.params,new Response(res));
+      logger.info('request GET : /weather ? ' + JSON.stringify(req.params));
+      weather.execute(req.params,new Response(res,logger));
     });
 
     api.listen(process.env.PORT || 5001,function () {
-      console.log(config.name + ' up and ready');
+      logger.config(config.name + ' up and ready');
     });
   }
 }
