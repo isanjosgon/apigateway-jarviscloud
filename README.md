@@ -33,9 +33,9 @@ Response
       "weather":{
         "main":"Snow",
         "description":"light snow",
-        "cloud":24
+        "cloud":24 // % clouds
         },
-      "temp":{
+      "temp":{ // Unit Kelvin
         "day":288.56,
         "max":288.56,
         "min":279.66,
@@ -44,10 +44,10 @@ Response
         "morning":282.25
         },
       "pressure":946.95,
-      "humidity":94,
+      "humidity":94, // % humidity
       "wind":{
-        "speed":3.61,
-        "direction":323
+        "speed":3.61, // Unit meter/sec
+        "direction":323 // degrees
       }
     }]
   }
