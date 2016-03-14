@@ -8,7 +8,7 @@ const config = require('../package.json');
 const Response = require('./response');
 
 class Server {
-  constructor(logger,weather,currency) {
+  constructor(logger,weather,currency,createmock,getmock) {
     let api = restify.createServer({
       name: config.name,
       version: config.version
@@ -35,6 +35,18 @@ class Server {
         logger.info('request GET : /currency ? ' + JSON.stringify(req.params));
       }
       currency.execute(req.params,new Response(res,logger));
+    });
+    api.post('/mock',function (req,res) {
+      if (logger) {
+        logger.info('request POST : /mock ? ' + JSON.stringify(req.body));
+      }
+      createmock.execute(JSON.parse(req.body),new Response(res,logger));
+    });
+    api.get('/mock/:id',function (req,res) {
+      if (logger) {
+        logger.info('request GET : /mock ? ' + JSON.stringify(req.params));
+      }
+      getmock.execute(req.params,new Response(res,logger));
     });
 
     api.listen(process.env.PORT || 5001,function () {
