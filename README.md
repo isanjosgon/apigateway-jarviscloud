@@ -54,7 +54,7 @@ Response
 }
 ```
 
-### Currency (working on it) ###
+### Currency ###
 
 Get currency rate.
 * GET : /currency
